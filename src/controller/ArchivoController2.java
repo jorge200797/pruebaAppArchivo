@@ -5,11 +5,15 @@
  */
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import prueba3.MethodConnection.ConnectionUtil;
 
 /**
@@ -23,6 +27,51 @@ public class ArchivoController2 implements Initializable{
     
     
     //variables fx
+  
+/*
+    @FXML
+    private TextField txtIdArchivo;
+
+    @FXML
+    private TextField txtnArchivo;
+
+    @FXML
+    private TextField txtIdInforme;
+
+    @FXML
+    private TextField txtInAsunto;
+
+    @FXML
+    private TextField txtInDocumento;
+
+    @FXML
+    private TextField txtInFecha;
+
+    @FXML
+    private TextField txtInFechRecep;
+
+    @FXML
+    private TextField txtInIdArch;
+
+    @FXML
+    private TextField txtInNArch;
+
+    @FXML
+    private TextField txtInRemitente;
+
+    @FXML
+    private TextField txtInAreaDerivar;
+
+    @FXML
+    private JFXButton btnRarchivo;
+
+    @FXML
+    private JFXButton btnRinforme;
+
+    @FXML
+    private JFXButton btnNfolio;
+    
+    */
     
     //
      java.sql.ResultSet resultSet = null;

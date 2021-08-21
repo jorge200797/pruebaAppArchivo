@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="1186.0" styleClass="parent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ArchivoController2">
+    <children>
+        <VBox fx:id="vBoxPanelLateral" layoutY="-1.0" prefHeight="584.0" prefWidth="1186.0" styleClass="sidebar">
+         <children>
+            <AnchorPane prefHeight="584.0" prefWidth="1186.0">
+               <children>
+                  <VBox layoutX="362.0" prefHeight="584.0" prefWidth="553.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Pane layoutX="-7.0" layoutY="1.0" prefHeight="576.0" prefWidth="820.0">
+                                 <children>
+                                    <Pane layoutX="1.0" layoutY="2.0" prefHeight="150.0" prefWidth="820.0">
+                                       <children>
+                                          <TextField fx:id="txtIdArchivo" layoutX="32.0" layoutY="61.0" prefHeight="17.0" prefWidth="96.0" />
+                                          <Label layoutX="25.0" layoutY="14.0" text="REGISTRO DE ARCHIVO" />
+                                          <TextField fx:id="txtnArchivo" layoutX="159.0" layoutY="61.0" prefHeight="17.0" prefWidth="96.0" />
+                                          <Label layoutX="66.0" layoutY="44.0" text="Id" />
+                                          <Label layoutX="156.0" layoutY="44.0" text="Nombre de archivo" />
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="-1.0" layoutY="152.0" prefHeight="165.0" prefWidth="820.0">
+                                       <children>
+                                          <Pane prefHeight="150.0" prefWidth="820.0">
+                                             <children>
+                                                <TextField fx:id="txtIdInforme" layoutX="46.0" layoutY="63.0" prefHeight="17.0" prefWidth="96.0" />
+                                                <Label layoutX="43.0" layoutY="24.0" text="REGISTRO DE INFORME" />
+                                                <Label layoutX="606.0" layoutY="39.0" text="Area a derivar" />
+                                                <Label layoutX="182.0" layoutY="46.0" text="Asunto" />
+                                                <TextField fx:id="txtInAsunto" layoutX="153.0" layoutY="63.0" prefHeight="17.0" prefWidth="96.0" />
+                                                <Label layoutX="272.0" layoutY="46.0" text="Documento" />
+                                                <Label layoutX="380.0" layoutY="46.0" text="Fecha" />
+                                                <TextField fx:id="txtInDocumento" layoutX="256.0" layoutY="63.0" prefHeight="17.0" prefWidth="96.0" />
+                                                <TextField fx:id="txtInFecha" layoutX="363.0" layoutY="63.0" prefHeight="25.0" prefWidth="90.0" />
+                                                <Label layoutX="465.0" layoutY="47.0" text="Fecha De Recepccion" />
+                                                <TextField fx:id="txtInFechRecep" layoutX="467.0" layoutY="63.0" prefHeight="25.0" prefWidth="102.0" />
+                                                <Label layoutX="723.0" layoutY="43.0" text="Id Archivo" />
+                                                <TextField fx:id="txtInIdArch" layoutX="707.0" layoutY="63.0" prefHeight="25.0" prefWidth="90.0" />
+                                                <TextField fx:id="txtInNArch" layoutX="49.0" layoutY="119.0" prefHeight="25.0" prefWidth="90.0" />
+                                                <Label layoutX="50.0" layoutY="97.0" text="N° de Archivador" />
+                                                <TextField fx:id="txtInRemitente" layoutX="155.0" layoutY="119.0" prefHeight="17.0" prefWidth="96.0" />
+                                                <Label layoutX="175.0" layoutY="97.0" text="Remitente" />
+                                                <TextField fx:id="txtInAreaDerivar" layoutX="598.0" layoutY="63.0" prefHeight="25.0" prefWidth="90.0" />
+                                                <Label layoutX="71.0" layoutY="47.0" prefHeight="17.0" prefWidth="46.0" text="Id " />
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <AnchorPane layoutX="20.0" layoutY="22.0" prefHeight="496.0" prefWidth="304.0">
+                     <children>
+                        <Pane layoutX="-19.0" layoutY="-24.0" prefHeight="584.0" prefWidth="337.0">
+                           <children>
+                              <Label alignment="CENTER" layoutY="4.0" prefHeight="48.0" prefWidth="337.0" text="REGISTRO DE ARCHIVO" textAlignment="CENTER" textFill="#1f7380" />
+                              <HBox layoutY="48.0" prefHeight="70.0" prefWidth="337.0">
+                                 <children>
+                                    <JFXButton fx:id="btnRarchivo" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR ARCHIVO" textAlignment="CENTER" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutY="118.0" prefHeight="70.0" prefWidth="337.0">
+                                 <children>
+                                    <JFXButton fx:id="btnRinforme" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR INFORME" textAlignment="CENTER" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="5.0" layoutY="172.0" prefHeight="35.0" prefWidth="327.0" />
+                              <HBox layoutX="14.0" layoutY="235.0" prefHeight="42.0" prefWidth="303.0">
+                                 <children>
+                                    <JFXButton fx:id="btnNfolio" prefHeight="63.0" prefWidth="328.0" text="NUMERO DE FOLIO" />
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="4.0" layoutY="292.0" prefHeight="40.0" prefWidth="328.0" />
+                              <HBox layoutX="1.0" layoutY="348.0" prefHeight="35.0" prefWidth="335.0" />
+                              <HBox layoutX="5.0" layoutY="389.0" prefHeight="42.0" prefWidth="327.0" />
+                              <HBox layoutX="5.0" layoutY="443.0" prefHeight="35.0" prefWidth="327.0" />
+                              <HBox layoutX="4.0" layoutY="484.0" prefHeight="40.0" prefWidth="327.0" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children></VBox>
+    </children>
+</AnchorPane>
