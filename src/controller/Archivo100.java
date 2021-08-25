@@ -26,10 +26,10 @@ public class Archivo100 extends Application {
     public void start(Stage stage) throws Exception {
         
         URL url = getClass().getClassLoader().getResource("archivo.fxml");
-System.out.println("url:"+url);
+
         //Parent root = FXMLLoader.load(getClass().getResource(""));
         Parent root =FXMLLoader.load(getClass().getResource("archivo.fxml"));
-        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.initStyle(StageStyle.UNDECORATED);
            
       
         

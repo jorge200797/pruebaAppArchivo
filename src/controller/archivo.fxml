@@ -20,12 +20,10 @@
                            <children>
                               <Pane layoutX="-7.0" layoutY="1.0" prefHeight="576.0" prefWidth="820.0">
                                  <children>
-                                    <Pane layoutX="1.0" layoutY="2.0" prefHeight="150.0" prefWidth="820.0">
+                                    <Pane layoutX="-1.0" layoutY="2.0" prefHeight="150.0" prefWidth="820.0">
                                        <children>
-                                          <TextField fx:id="txtIdArchivo" layoutX="32.0" layoutY="61.0" prefHeight="17.0" prefWidth="96.0" />
                                           <Label layoutX="25.0" layoutY="14.0" text="REGISTRO DE ARCHIVO" />
                                           <TextField fx:id="txtnArchivo" layoutX="159.0" layoutY="61.0" prefHeight="17.0" prefWidth="96.0" />
-                                          <Label layoutX="66.0" layoutY="44.0" text="Id" />
                                           <Label layoutX="156.0" layoutY="44.0" text="Nombre de archivo" />
                                        </children>
                                     </Pane>
@@ -46,7 +44,7 @@
                                                 <TextField fx:id="txtInFechRecep" layoutX="467.0" layoutY="63.0" prefHeight="25.0" prefWidth="102.0" />
                                                 <Label layoutX="723.0" layoutY="43.0" text="Id Archivo" />
                                                 <TextField fx:id="txtInIdArch" layoutX="707.0" layoutY="63.0" prefHeight="25.0" prefWidth="90.0" />
-                                                <TextField fx:id="txtInNArch" layoutX="49.0" layoutY="119.0" prefHeight="25.0" prefWidth="90.0" />
+                                                <TextField fx:id="txtInNArch" layoutX="49.0" layoutY="120.0" prefHeight="25.0" prefWidth="90.0" />
                                                 <Label layoutX="50.0" layoutY="97.0" text="N° de Archivador" />
                                                 <TextField fx:id="txtInRemitente" layoutX="155.0" layoutY="119.0" prefHeight="17.0" prefWidth="96.0" />
                                                 <Label layoutX="175.0" layoutY="97.0" text="Remitente" />
@@ -69,7 +67,7 @@
                               <Label alignment="CENTER" layoutY="4.0" prefHeight="48.0" prefWidth="337.0" text="REGISTRO DE ARCHIVO" textAlignment="CENTER" textFill="#1f7380" />
                               <HBox layoutY="48.0" prefHeight="70.0" prefWidth="337.0">
                                  <children>
-                                    <JFXButton fx:id="btnRarchivo" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR ARCHIVO" textAlignment="CENTER" />
+                                    <JFXButton fx:id="btnRarchivo" alignment="CENTER" contentDisplay="CENTER" onAction="#añadirArchivo" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR ARCHIVO" textAlignment="CENTER" />
                                  </children>
                               </HBox>
                               <HBox layoutY="118.0" prefHeight="70.0" prefWidth="337.0">
