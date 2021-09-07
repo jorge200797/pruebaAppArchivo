@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,40 +22,43 @@
                            <children>
                               <Pane layoutX="-7.0" layoutY="1.0" prefHeight="576.0" prefWidth="820.0">
                                  <children>
-                                    <Pane layoutX="-1.0" layoutY="2.0" prefHeight="150.0" prefWidth="820.0">
+                                    <Pane layoutX="-1.0" layoutY="2.0" prefHeight="150.0" prefWidth="152.0">
                                        <children>
-                                          <Label layoutX="25.0" layoutY="14.0" text="REGISTRO DE ARCHIVO" />
-                                          <TextField fx:id="txtnArchivo" layoutX="159.0" layoutY="61.0" prefHeight="17.0" prefWidth="96.0" />
-                                          <Label layoutX="156.0" layoutY="44.0" text="Nombre de archivo" />
+                                          <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="126.0" text="REGISTRO DE ARCHIVO" />
+                                          <TextField fx:id="txtnArchivo" layoutX="40.0" layoutY="63.0" prefHeight="17.0" prefWidth="96.0" />
+                                          <Label layoutX="24.0" layoutY="37.0" text="Nombre de archivo" />
                                        </children>
                                     </Pane>
                                     <Pane layoutX="-1.0" layoutY="152.0" prefHeight="165.0" prefWidth="820.0">
                                        <children>
-                                          <Pane prefHeight="150.0" prefWidth="820.0">
+                                          <Pane prefHeight="150.0" prefWidth="673.0" />
+                                       </children>
+                                    </Pane>
+                                    <AnchorPane layoutX="157.0" layoutY="5.0" prefHeight="131.0" prefWidth="661.0">
+                                       <children>
+                                          <Pane layoutX="-2.0" prefHeight="165.0" prefWidth="667.0">
                                              <children>
-                                                <TextField fx:id="txtIdInforme" layoutX="46.0" layoutY="63.0" prefHeight="17.0" prefWidth="96.0" />
-                                                <Label layoutX="43.0" layoutY="24.0" text="REGISTRO DE INFORME" />
-                                                <Label layoutX="606.0" layoutY="39.0" text="Area a derivar" />
-                                                <Label layoutX="182.0" layoutY="46.0" text="Asunto" />
-                                                <TextField fx:id="txtInAsunto" layoutX="153.0" layoutY="63.0" prefHeight="17.0" prefWidth="96.0" />
-                                                <Label layoutX="272.0" layoutY="46.0" text="Documento" />
-                                                <Label layoutX="380.0" layoutY="46.0" text="Fecha" />
-                                                <TextField fx:id="txtInDocumento" layoutX="256.0" layoutY="63.0" prefHeight="17.0" prefWidth="96.0" />
-                                                <TextField fx:id="txtInFecha" layoutX="363.0" layoutY="63.0" prefHeight="25.0" prefWidth="90.0" />
-                                                <Label layoutX="465.0" layoutY="47.0" text="Fecha De Recepccion" />
-                                                <TextField fx:id="txtInFechRecep" layoutX="467.0" layoutY="63.0" prefHeight="25.0" prefWidth="102.0" />
-                                                <Label layoutX="723.0" layoutY="43.0" text="Id Archivo" />
-                                                <TextField fx:id="txtInIdArch" layoutX="707.0" layoutY="63.0" prefHeight="25.0" prefWidth="90.0" />
-                                                <TextField fx:id="txtInNArch" layoutX="49.0" layoutY="120.0" prefHeight="25.0" prefWidth="90.0" />
-                                                <Label layoutX="50.0" layoutY="97.0" text="N° de Archivador" />
-                                                <TextField fx:id="txtInRemitente" layoutX="155.0" layoutY="119.0" prefHeight="17.0" prefWidth="96.0" />
-                                                <Label layoutX="175.0" layoutY="97.0" text="Remitente" />
-                                                <TextField fx:id="txtInAreaDerivar" layoutX="598.0" layoutY="63.0" prefHeight="25.0" prefWidth="90.0" />
-                                                <Label layoutX="71.0" layoutY="47.0" prefHeight="17.0" prefWidth="46.0" text="Id " />
+                                                <Label layoutX="41.0" layoutY="9.0" text="REGISTRO DE INFORME" />
+                                                <Label layoutX="22.0" layoutY="33.0" text="N° de Archivador" />
+                                                <TextField fx:id="txtInNArch" layoutX="22.0" layoutY="56.0" prefHeight="25.0" prefWidth="90.0" />
+                                                <Label layoutX="128.0" layoutY="36.0" text="Asunto" />
+                                                <TextField fx:id="txtInAsunto" layoutX="119.0" layoutY="56.0" prefHeight="17.0" prefWidth="96.0" />
+                                                <Label layoutX="241.0" layoutY="36.0" text="Documento" />
+                                                <TextField fx:id="txtInDocumento" layoutX="226.0" layoutY="56.0" prefHeight="17.0" prefWidth="96.0" />
+                                                <Label layoutX="355.0" layoutY="38.0" text="Fecha" />
+                                                <Label layoutX="433.0" layoutY="38.0" text="Fecha De Recepccion" />
+                                                <Label layoutX="563.0" layoutY="37.0" text="Area a derivar" />
+                                                <TextField fx:id="txtInAreaDerivar" layoutX="555.0" layoutY="56.0" prefHeight="25.0" prefWidth="90.0" />
+                                                <Label layoutX="40.0" layoutY="91.0" text="Id Archivo" />
+                                                <Label layoutX="138.0" layoutY="91.0" text="Remitente" />
+                                                <TextField fx:id="txtInRemitente" layoutX="119.0" layoutY="109.0" prefHeight="17.0" prefWidth="96.0" />
+                                                <DatePicker fx:id="txtInFechaJc" layoutX="334.0" layoutY="56.0" prefHeight="25.0" prefWidth="100.0" />
+                                                <DatePicker fx:id="txtInFechRecepJc" layoutX="439.0" layoutY="56.0" prefHeight="25.0" prefWidth="100.0" />
+                                                <JFXComboBox fx:id="txtInIdArchJco" layoutX="22.0" layoutY="109.0" onAction="#selecionarIdArchivo" prefHeight="25.0" prefWidth="90.0" />
                                              </children>
                                           </Pane>
                                        </children>
-                                    </Pane>
+                                    </AnchorPane>
                                  </children>
                               </Pane>
                            </children>
@@ -72,7 +77,7 @@
                               </HBox>
                               <HBox layoutY="118.0" prefHeight="70.0" prefWidth="337.0">
                                  <children>
-                                    <JFXButton fx:id="btnRinforme" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR INFORME" textAlignment="CENTER" />
+                                    <JFXButton fx:id="btnRinforme" alignment="CENTER" contentDisplay="CENTER" onAction="#añadirInforme" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR INFORME" textAlignment="CENTER" />
                                  </children>
                               </HBox>
                               <HBox layoutX="5.0" layoutY="172.0" prefHeight="35.0" prefWidth="327.0" />
