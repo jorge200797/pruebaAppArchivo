@@ -72,12 +72,12 @@
                               <Label alignment="CENTER" layoutY="4.0" prefHeight="48.0" prefWidth="337.0" text="REGISTRO DE ARCHIVO" textAlignment="CENTER" textFill="#1f7380" />
                               <HBox layoutY="48.0" prefHeight="70.0" prefWidth="337.0">
                                  <children>
-                                    <JFXButton fx:id="btnRarchivo" alignment="CENTER" contentDisplay="CENTER" onAction="#añadirArchivo" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR ARCHIVO" textAlignment="CENTER" />
+                                    <JFXButton fx:id="btnRarchivo" alignment="CENTER" contentDisplay="CENTER" onAction="#validaAñadirArchivo" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR ARCHIVO" textAlignment="CENTER" />
                                  </children>
                               </HBox>
                               <HBox layoutY="118.0" prefHeight="70.0" prefWidth="337.0">
                                  <children>
-                                    <JFXButton fx:id="btnRinforme" alignment="CENTER" contentDisplay="CENTER" onAction="#añadirInforme" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR INFORME" textAlignment="CENTER" />
+                                    <JFXButton fx:id="btnRinforme" alignment="CENTER" contentDisplay="CENTER" onAction="#validaAñadirIforme" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR INFORME" textAlignment="CENTER" />
                                  </children>
                               </HBox>
                               <HBox layoutX="5.0" layoutY="172.0" prefHeight="35.0" prefWidth="327.0" />

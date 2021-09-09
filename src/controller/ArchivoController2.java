@@ -18,11 +18,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -95,6 +97,9 @@ public class ArchivoController2 implements Initializable {
     
     private int idGenerado;
 
+    String validacionCampoVacio="Campo vacio";
+     String validacionLongitud="Se requiere una longitud de 8";
+       String validacionNumeros="Ingresar solo numeros";
     public ArchivoController2() {
         ConnectionUtil connectionUtil = new ConnectionUtil();
         connection = (Connection) connectionUtil.getConnection();
@@ -139,6 +144,7 @@ public class ArchivoController2 implements Initializable {
     }
 
     //
+  
     @FXML
 
     private void añadirInforme(ActionEvent event) throws SQLException {
@@ -148,7 +154,9 @@ public class ArchivoController2 implements Initializable {
         try {
             ConnectionUtil connectionUtil = new ConnectionUtil();
             connection = (Connection) connectionUtil.getConnection();
-
+              if(txtInNArch.getText().isEmpty()){
+              
+              }
             String sql = "INSERT INTO `tb_informe` (      `FECHA`, `DOCUMENTO`, `ASUNTO`, `REMITENTE`, `AREAADERIVAR`, `FECHADERECEPCCION`, `N°DEARCHIVADOR`, `idArchivo`) VALUES ("
                     + "'" + ingresaFecha() + "' "
                     + ",'" + ingresaDocumento() + "'"
@@ -177,6 +185,140 @@ public class ArchivoController2 implements Initializable {
         }
 
     }
+    
+      public static void infoBox(String infoMessage, String titleBar, String headerMessage) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titleBar);
+        alert.setHeaderText(headerMessage);
+        alert.setContentText(infoMessage);
+        alert.showAndWait();
+    }
+      @FXML
+     public void validaAñadirArchivo(ActionEvent event){
+         
+             if(txtnArchivo.getText().trim().isEmpty()){
+              infoBox(validacionCampoVacio, "info", null);
+              }
+             else{
+                 try {
+                     añadirArchivo(event);
+                 } catch (Exception e) {
+                 }
+                 
+             }
+             
+           
+   
+   }
+       @FXML
+     public void validaAñadirIforme(ActionEvent event){
+         
+             
+             
+             if(txtInNArch.getText().trim().isEmpty()){
+              infoBox(validacionCampoVacio, "info", null);
+              }
+             else{
+                 try {
+                     añadirInforme(event);
+                 } catch (Exception e) {
+                 }
+                 
+             }
+               if(txtInAsunto.getText().trim().isEmpty()){
+              infoBox(validacionCampoVacio, "info", null);
+              }
+             else{
+                 try {
+                     añadirInforme(event);
+                 } catch (Exception e) {
+                 }
+                 
+             }
+                 if(txtInDocumento.getText().trim().isEmpty()){
+              infoBox(validacionCampoVacio, "info", null);
+              }
+             else{
+                 try {
+                     añadirInforme(event);
+                 } catch (Exception e) {
+                 }
+                 
+             }
+                 
+                   if( txtInDocumento.getText().length()==8 ){
+              infoBox(validacionLongitud, "info", null);
+              }
+             else{
+                 try {
+                     añadirInforme(event);
+                 } catch (Exception e) {
+                 }
+                 
+             }
+                   String documento=txtInDocumento.getText().trim().toString();
+                   
+                   if(!(Pattern.matches("[0-9]+",documento))){
+              infoBox(validacionNumeros, "info", null);
+              }
+             else{
+                 try {
+                     añadirInforme(event);
+                 } catch (Exception e) {
+                 }
+                 
+             }
+                 
+                 
+                 
+                  LocalDate date = txtInFechaJc.getValue();
+      if(String.valueOf(date).isEmpty()){
+              infoBox(validacionCampoVacio, "info", null);
+              }
+             else{
+                 try {
+                     añadirInforme(event);
+                 } catch (Exception e) {
+                 }
+                 
+             }
+      
+              LocalDate date1 = txtInFechRecepJc.getValue();
+      if(String.valueOf(date1).isEmpty()){
+              infoBox(validacionCampoVacio, "info", null);
+              }
+             else{
+                 try {
+                     añadirInforme(event);
+                 } catch (Exception e) {
+                 }
+                 
+             }
+    if(txtInAreaDerivar.getText().isEmpty()){
+              infoBox(validacionCampoVacio, "info", null);
+              }
+             else{
+                 try {
+                     añadirInforme(event);
+                 } catch (Exception e) {
+                 }
+                 
+             }
+    
+    
+      if( filtro(txtInIdArchJco).isEmpty()){
+              infoBox(validacionCampoVacio, "info", null);
+              }
+             else{
+                 try {
+                     añadirInforme(event);
+                 } catch (Exception e) {
+                 }
+                 
+             }
+  
+   }
+     
 
     public String ingresaFecha() {
         LocalDate date = txtInFechaJc.getValue();
