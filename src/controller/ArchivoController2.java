@@ -70,7 +70,7 @@ public class ArchivoController2 implements Initializable {
     private TextField txtInIdArch;
 
     @FXML
-    private TextField txtInNArch;
+    private TextField txtInNfolios;
 
     @FXML
     private TextField txtInRemitente;
@@ -100,6 +100,10 @@ public class ArchivoController2 implements Initializable {
     String validacionCampoVacio="Campo vacio";
      String validacionLongitud="Se requiere una longitud de 8";
        String validacionNumeros="Ingresar solo numeros";
+        String ingresoArchivoCorrecto="Se registro correctamente el archivo";
+         String ingresoInformeCorrecto="Se registro correctamente el informe";
+         
+         Boolean esCorrecto;
     public ArchivoController2() {
         ConnectionUtil connectionUtil = new ConnectionUtil();
         connection = (Connection) connectionUtil.getConnection();
@@ -113,7 +117,14 @@ public class ArchivoController2 implements Initializable {
     private void añadirArchivo(ActionEvent event) throws SQLException {
         int id = 0;
         int idGenerado;
-
+         validaAñadirArchivo(event);
+         
+                  if(esCorrecto==false){
+                 //validaAñadirArchivo(event);
+                  }
+                  else{
+                      //esCorrecto=true;
+                      
         try {
             ConnectionUtil connectionUtil = new ConnectionUtil();
             connection = (Connection) connectionUtil.getConnection();
@@ -130,11 +141,13 @@ public class ArchivoController2 implements Initializable {
             resultSet.close();
 
             preparedStatement.close();
+            
+              infoBox(ingresoArchivoCorrecto, "info", null);
 
         } catch (Exception e) {
             e.printStackTrace();
 
-        }
+        }}
     }
 
     public String ingresarNombreArchivo() {
@@ -150,21 +163,29 @@ public class ArchivoController2 implements Initializable {
     private void añadirInforme(ActionEvent event) throws SQLException {
         int id = 0;
         int idGenerado;
-
+        validaAñadirIforme(event);
+                  if(esCorrecto==false){
+                 esCorrecto=false;
+                  
+                  }
+                  
+                  else{
+                                           // esCorrecto=true;
+ esCorrecto=false;
         try {
             ConnectionUtil connectionUtil = new ConnectionUtil();
             connection = (Connection) connectionUtil.getConnection();
-              if(txtInNArch.getText().isEmpty()){
+              if (txtInNfolios.getText().isEmpty()){
               
               }
-            String sql = "INSERT INTO `tb_informe` (      `FECHA`, `DOCUMENTO`, `ASUNTO`, `REMITENTE`, `AREAADERIVAR`, `FECHADERECEPCCION`, `N°DEARCHIVADOR`, `idArchivo`) VALUES ("
+            String sql = "INSERT INTO `tb_informe` (      `FECHA`, `DOCUMENTO`, `ASUNTO`, `REMITENTE`, `AREAADERIVAR`, `FECHADERECEPCCION`, `N°DEFOLIOS`, `idArchivo`) VALUES ("
                     + "'" + ingresaFecha() + "' "
                     + ",'" + ingresaDocumento() + "'"
                     + ",'" + ingresaAsunto() + "'"
                     + ",'" + ingresaRemitente() + "'"
                     + ",'" + ingresaAreaaderivar() + "'"
                     + ",'" + ingresaFechaderepccion() + "'"
-                    + ",'" + ingresatNdearchivador() + "'"
+                    + ",'" + ingresatNdefolios() + "'"
                     + ",'" + idArchivo()+ "')";
 
             preparedStatement = (PreparedStatement) connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -178,11 +199,11 @@ public class ArchivoController2 implements Initializable {
             resultSet.close();
 
             preparedStatement.close();
-
+                 infoBox(ingresoInformeCorrecto, "info", null);
         } catch (Exception e) {
             e.printStackTrace();
 
-        }
+        }}
 
     }
     
@@ -197,14 +218,14 @@ public class ArchivoController2 implements Initializable {
      public void validaAñadirArchivo(ActionEvent event){
          
              if(txtnArchivo.getText().trim().isEmpty()){
+                  esCorrecto=false;
               infoBox(validacionCampoVacio, "info", null);
+              
+             
               }
              else{
-                 try {
-                     añadirArchivo(event);
-                 } catch (Exception e) {
-                 }
-                 
+                 esCorrecto=true;
+//              
              }
              
            
@@ -212,110 +233,86 @@ public class ArchivoController2 implements Initializable {
    }
        @FXML
      public void validaAñadirIforme(ActionEvent event){
-         
-             
-             
-             if(txtInNArch.getText().trim().isEmpty()){
+                 String documento=txtInDocumento.getText().trim().toString();
+                 int longitudDocumento=documento.length();
+                  System.out.println("validar + logitud documento="+longitudDocumento);
+             LocalDate date = txtInFechaJc.getValue();
+             LocalDate date1 = txtInFechRecepJc.getValue();
+             if (txtInNfolios.getText().trim().isEmpty()|| 
+                     txtInAsunto.getText().trim().isEmpty() || 
+                     txtInDocumento.getText().trim().isEmpty() ||
+                     String.valueOf(date).equals("null") ||
+                     String.valueOf(date1).equals("null") ||
+                     filtro(txtInIdArchJco).isEmpty() ||
+                     txtInRemitente.getText().trim().isEmpty()
+                   ){
+                 
+                 esCorrecto=false;
               infoBox(validacionCampoVacio, "info", null);
               }
              else{
-                 try {
-                     añadirInforme(event);
-                 } catch (Exception e) {
-                 }
-                 
+               
+                 esCorrecto=true;
              }
-               if(txtInAsunto.getText().trim().isEmpty()){
-              infoBox(validacionCampoVacio, "info", null);
-              }
-             else{
-                 try {
-                     añadirInforme(event);
-                 } catch (Exception e) {
-                 }
-                 
-             }
-                 if(txtInDocumento.getText().trim().isEmpty()){
-              infoBox(validacionCampoVacio, "info", null);
-              }
-             else{
-                 try {
-                     añadirInforme(event);
-                 } catch (Exception e) {
-                 }
-                 
-             }
-                 
-                   if( txtInDocumento.getText().length()==8 ){
-              infoBox(validacionLongitud, "info", null);
-              }
-             else{
-                 try {
-                     añadirInforme(event);
-                 } catch (Exception e) {
-                 }
-                 
-             }
-                   String documento=txtInDocumento.getText().trim().toString();
+//               if(txtInAsunto.getText().trim().isEmpty()){
+//                   esCorrecto=false;
+//              infoBox(validacionCampoVacio, "info", null);
+//              }
+//             else{
+//                esCorrecto=true;
+//             }
+//                 if(txtInDocumento.getText().trim().isEmpty()){
+//                     esCorrecto=false;
+//              infoBox(validacionCampoVacio, "info", null);
+//              }
+//             else{
+//                 
+//                 esCorrecto=true;
+//             }
+                  
+              
+              
                    
-                   if(!(Pattern.matches("[0-9]+",documento))){
-              infoBox(validacionNumeros, "info", null);
-              }
-             else{
-                 try {
-                     añadirInforme(event);
-                 } catch (Exception e) {
-                 }
                  
-             }
-                 
-                 
-                 
-                  LocalDate date = txtInFechaJc.getValue();
-      if(String.valueOf(date).isEmpty()){
-              infoBox(validacionCampoVacio, "info", null);
-              }
-             else{
-                 try {
-                     añadirInforme(event);
-                 } catch (Exception e) {
-                 }
-                 
-             }
-      
-              LocalDate date1 = txtInFechRecepJc.getValue();
-      if(String.valueOf(date1).isEmpty()){
-              infoBox(validacionCampoVacio, "info", null);
-              }
-             else{
-                 try {
-                     añadirInforme(event);
-                 } catch (Exception e) {
-                 }
-                 
-             }
-    if(txtInAreaDerivar.getText().isEmpty()){
-              infoBox(validacionCampoVacio, "info", null);
-              }
-             else{
-                 try {
-                     añadirInforme(event);
-                 } catch (Exception e) {
-                 }
-                 
-             }
-    
-    
-      if( filtro(txtInIdArchJco).isEmpty()){
-              infoBox(validacionCampoVacio, "info", null);
-              }
-             else{
-                 try {
-                     añadirInforme(event);
-                 } catch (Exception e) {
-                 }
-                 
-             }
+//                 
+//                 
+//                 
+//                  LocalDate date = txtInFechaJc.getValue();
+//      if(String.valueOf(date).isEmpty()){
+//          esCorrecto=false;
+//              infoBox(validacionCampoVacio, "info", null);
+//              }
+//             else{
+//               
+//                 esCorrecto=true;
+//             }
+//      
+//              LocalDate date1 = txtInFechRecepJc.getValue();
+//      if(String.valueOf(date1).isEmpty()){
+//          esCorrecto=false;
+//              infoBox(validacionCampoVacio, "info", null);
+//              }
+//             else{
+//               esCorrecto=true;
+//                 
+//             }
+//    if(txtInAreaDerivar.getText().isEmpty()){
+//              infoBox(validacionCampoVacio, "info", null);
+//              esCorrecto=false;
+//              }
+//             else{
+//               esCorrecto=true;
+//             }
+//    
+//    
+//      if( filtro(txtInIdArchJco).isEmpty()){
+//              infoBox(validacionCampoVacio, "info", null);
+//              esCorrecto=false;
+//              }
+//             else{
+//                esCorrecto=true;
+//                 
+//             }
   
    }
      
@@ -323,13 +320,14 @@ public class ArchivoController2 implements Initializable {
     public String ingresaFecha() {
         LocalDate date = txtInFechaJc.getValue();
         String fechaRecepcion = String.valueOf(date);
-
+        System.out.println(fechaRecepcion);
         return fechaRecepcion;
 
     }
 
     public String ingresaDocumento() {
         String documento = txtInDocumento.getText();
+        System.out.println("longitud="+documento.length());
 
         return documento;
     }
@@ -356,13 +354,14 @@ public class ArchivoController2 implements Initializable {
 
         LocalDate date = txtInFechRecepJc.getValue();
         String fechaRecepcion = String.valueOf(date);
+             System.out.println(fechaRecepcion);
 
         return fechaRecepcion;
 
     }
 
-    public String ingresatNdearchivador() {
-        String ingresarNdearchivador = txtInNArch.getText();
+    public String ingresatNdefolios() {
+        String ingresarNdearchivador = txtInNfolios.getText();
 
         return ingresarNdearchivador;
     }
