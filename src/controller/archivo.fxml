@@ -80,17 +80,10 @@
                                     <JFXButton fx:id="btnRinforme" alignment="CENTER" contentDisplay="CENTER" onAction="#añadirInforme" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR INFORME" textAlignment="CENTER" />
                                  </children>
                               </HBox>
-                              <HBox layoutX="5.0" layoutY="172.0" prefHeight="35.0" prefWidth="327.0" />
-                              <HBox layoutX="14.0" layoutY="235.0" prefHeight="42.0" prefWidth="303.0">
+                              <HBox layoutX="5.0" layoutY="172.0" prefHeight="70.0" prefWidth="327.0">
                                  <children>
-                                    <JFXButton fx:id="btnNfolio" prefHeight="63.0" prefWidth="328.0" text="NUMERO DE FOLIO" />
-                                 </children>
-                              </HBox>
-                              <HBox layoutX="4.0" layoutY="292.0" prefHeight="40.0" prefWidth="328.0" />
-                              <HBox layoutX="1.0" layoutY="348.0" prefHeight="35.0" prefWidth="335.0" />
-                              <HBox layoutX="5.0" layoutY="389.0" prefHeight="42.0" prefWidth="327.0" />
-                              <HBox layoutX="5.0" layoutY="443.0" prefHeight="35.0" prefWidth="327.0" />
-                              <HBox layoutX="4.0" layoutY="484.0" prefHeight="40.0" prefWidth="327.0" />
+                                    <JFXButton fx:id="btnRinformeSinTomo" alignment="CENTER" contentDisplay="CENTER" onAction="#añadirInformeSinIdArchivo" prefHeight="70.0" prefWidth="337.0" text="REGISTRAR INFORME SIN TOMO" textAlignment="CENTER" />
+                                 </children></HBox>
                            </children>
                         </Pane>
                      </children>

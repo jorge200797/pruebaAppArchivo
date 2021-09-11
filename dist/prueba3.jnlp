@@ -33,7 +33,7 @@
     <jar href="lib\jfoenix-9.0.8.jar" size="2419463" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.48-bin.jar" size="1006959" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.48.jar" size="1006956" download="eager" />
-    <jar href="prueba3.jar" size="29067" download="eager" />
+    <jar href="prueba3.jar" size="23024" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="controller.Archivo100"  name="prueba3" />
   <update check="always"/>
