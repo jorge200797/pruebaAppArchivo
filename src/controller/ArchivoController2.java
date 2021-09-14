@@ -26,7 +26,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 import org.controlsfx.control.spreadsheet.StringConverterWithFormat;
@@ -43,6 +48,9 @@ public class ArchivoController2 implements Initializable {
 
     //variables fx
     @FXML
+    private ImageView imgLogo;
+
+    @FXML
     private TextField txtIdArchivo;
 
     @FXML
@@ -53,12 +61,14 @@ public class ArchivoController2 implements Initializable {
 
     @FXML
     private TextField txtIdInforme;
-
     @FXML
-    private TextField txtInAsunto;
-
+    private TextArea txtInAsunto;
+//    @FXML
+//    private TextField txtInAsunto;
     @FXML
-    private TextField txtInDocumento;
+    private TextArea txtInDocumento;
+//    @FXML
+//    private TextField txtInDocumento;
 
     @FXML
     private DatePicker txtInFechaJc;
@@ -73,11 +83,14 @@ public class ArchivoController2 implements Initializable {
     private TextField txtInNfolios;
 
     @FXML
-    private TextField txtInRemitente;
-
+    private TextArea txtInRemitente;
     @FXML
-    private TextField txtInAreaDerivar;
+    private TextArea txtInAreaDerivar;
 
+//    @FXML
+//    private TextField txtInRemitente;
+//    @FXML
+//    private TextField txtInAreaDerivar;
     @FXML
     private JFXButton btnRarchivo;
 
@@ -89,6 +102,33 @@ public class ArchivoController2 implements Initializable {
 
     @FXML
     private JFXButton btnNfolio;
+
+    @FXML
+    private TableView<?> tableC;
+
+    @FXML
+    private TableColumn<?, ?> cFecha;
+
+    @FXML
+    private TableColumn<?, ?> cDocumento;
+
+    @FXML
+    private TableColumn<?, ?> cAsunto;
+
+    @FXML
+    private TableColumn<?, ?> cRemitente;
+
+    @FXML
+    private TableColumn<?, ?> cAreaAderivar;
+
+    @FXML
+    private TableColumn<?, ?> cFechaDrecepcion;
+
+    @FXML
+    private TableColumn<?, ?> cNfolios;
+
+    @FXML
+    private TableColumn<?, ?> cNarchivador;
 
     //
     java.sql.ResultSet resultSet = null;
@@ -105,7 +145,7 @@ public class ArchivoController2 implements Initializable {
     String validacionNumeros = "Ingresar solo numeros";
     String ingresoArchivoCorrecto = "Se registro correctamente el archivo";
     String ingresoInformeCorrecto = "Se registro correctamente el informe";
-   String ingresoInformeSinTomoCorrecto = "Se registro correctamente el informe sin tomo";
+    String ingresoInformeSinTomoCorrecto = "Se registro correctamente el informe sin tomo";
     Boolean esCorrecto;
 
     public ArchivoController2() {
@@ -172,7 +212,7 @@ public class ArchivoController2 implements Initializable {
         try {
             ConnectionUtil connectionUtil = new ConnectionUtil();
             connection = (Connection) connectionUtil.getConnection();
-        
+
             String sql = "INSERT INTO `tb_informe_sinidarchivo` (      `FECHA`, `DOCUMENTO`, `ASUNTO`, `REMITENTE`, `AREAADERIVAR`, `FECHADERECEPCCION`, `N°DEFOLIOS`, `idArchivo`) VALUES ("
                     + "'" + ingresaFecha() + "' "
                     + ",'" + ingresaDocumento() + "'"
@@ -180,7 +220,7 @@ public class ArchivoController2 implements Initializable {
                     + ",'" + ingresaRemitente() + "'"
                     + ",'" + ingresaAreaaderivar() + "'"
                     + ",'" + ingresaFechaderepccion() + "'"
-                    + ",'" + ingresatNdefolios()+"'," +0+")";
+                    + ",'" + ingresatNdefolios() + "'," + 0 + ")";
 
             preparedStatement = (PreparedStatement) connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -216,7 +256,7 @@ public class ArchivoController2 implements Initializable {
             try {
                 ConnectionUtil connectionUtil = new ConnectionUtil();
                 connection = (Connection) connectionUtil.getConnection();
-             
+
                 String sql = "INSERT INTO `tb_informe` (      `FECHA`, `DOCUMENTO`, `ASUNTO`, `REMITENTE`, `AREAADERIVAR`, `FECHADERECEPCCION`, `N°DEFOLIOS`,) VALUES ("
                         + "'" + ingresaFecha() + "' "
                         + ",'" + ingresaDocumento() + "'"
@@ -468,10 +508,20 @@ public class ArchivoController2 implements Initializable {
 
     }
 
+    private void colocarImagen() {
+
+        URL linkLogo = getClass().getResource("/img/logo.png");
+        Image imageLogo = new Image(linkLogo.toString(), 200, 96, false, true);
+
+        imgLogo.setImage(imageLogo);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //colocarImagenBotones();
         obtenerArchivos();
+        colocarImagen();
 
         //idArchivo();
     }

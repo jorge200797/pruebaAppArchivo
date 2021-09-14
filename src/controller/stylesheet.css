@@ -1,5 +1,5 @@
 .parent{
-    -fx-background-color: #fff;
+    -fx-background-color: #F4FA58;
 }
 .sidebar{
     -fx-background-color: #303f9f;
@@ -9,7 +9,7 @@
     -fx-border-width: 0px 0px 0px 3px
 }
 .btns:hover{
-    -fx-background-color: #202332;
+    -fx-background-color: #f6d8ce;
 }
 .box{
     -fx-border-color: #3B3F4B;
@@ -34,16 +34,16 @@
     -fx-border-width: 5px;
 }
 .table-view .column-header-background {
-    -fx-background-color: #054a87;
+    -fx-background-color:#b5d1eb;
 }
 .table-view .column-header, .table-view .filler {
-    -fx-background-color: #054a87;    
+    -fx-background-color: #b5d1eb;    
     -fx-border-color: -fx-box-border;
     -fx-border-width: 0 1 3 0;
     -fx-border-insets: 0;
 }
 .table-view .column-header .label{
-    -fx-text-fill: #fffcfc;
+    -fx-text-fill:#0f0f0f;
     -fx-alignment: CENTER;
 }
 @font-face {

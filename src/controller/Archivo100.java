@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -54,10 +55,11 @@ public class Archivo100 extends Application {
 
         Scene scene = new Scene(root);
 
-        //scene.getStylesheets().add(getClass().getResource("../stylesheet.css").toExternalForm());
+       scene.getStylesheets().add(getClass().getResource("stylesheet.css").toExternalForm());
 
-        stage.setTitle("Archivo");
-        //stage.getIcons().add(new Image("img/cne.png")); esto es si pones un icono cuan se habra  la aplicacion
+        stage.setTitle("INVENTARIO DOCUMENTARIO - GSP");
+        stage.getIcons().add(new Image("img/icono.png")); 
+        //esto es si pones un icono cuan se habra  la aplicacion
         
         stage.setScene(scene);
         stage.show();
