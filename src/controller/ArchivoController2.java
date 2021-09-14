@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import domain.Informe;
+import domain.Archivo;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -104,31 +107,31 @@ public class ArchivoController2 implements Initializable {
     private JFXButton btnNfolio;
 
     @FXML
-    private TableView<?> tableC;
+    private TableView<Informe> tableC;
 
     @FXML
-    private TableColumn<?, ?> cFecha;
+    private TableColumn<Informe, String> cFecha;
 
     @FXML
-    private TableColumn<?, ?> cDocumento;
+    private TableColumn<Informe, String> cDocumento;
 
     @FXML
-    private TableColumn<?, ?> cAsunto;
+    private TableColumn<Informe, String> cAsunto;
 
     @FXML
-    private TableColumn<?, ?> cRemitente;
+    private TableColumn<Informe, String> cRemitente;
 
     @FXML
-    private TableColumn<?, ?> cAreaAderivar;
+    private TableColumn<Informe, String> cAreaAderivar;
 
     @FXML
-    private TableColumn<?, ?> cFechaDrecepcion;
+    private TableColumn<Informe, String> cFechaDrecepcion;
 
     @FXML
-    private TableColumn<?, ?> cNfolios;
+    private TableColumn<Informe, String> cNfolios;
 
     @FXML
-    private TableColumn<?, ?> cNarchivador;
+    private TableColumn<Archivo, String> cNarchivador;
 
     //
     java.sql.ResultSet resultSet = null;
@@ -137,7 +140,8 @@ public class ArchivoController2 implements Initializable {
     java.sql.ResultSet resultSetC = null;
     PreparedStatement preparedStatementC = null;
     private String combonombreArchivoSql;
-
+    private ObservableList<Informe> listInforme;
+     private ObservableList<String> listArchivo;
     private int idGenerado;
 
     String validacionCampoVacio = "Campo vacio";
@@ -154,6 +158,9 @@ public class ArchivoController2 implements Initializable {
 
     }
     Connection connection;
+    
+    
+ 
 
     //
     @FXML
@@ -330,61 +337,7 @@ public class ArchivoController2 implements Initializable {
 
             esCorrecto = true;
         }
-//               if(txtInAsunto.getText().trim().isEmpty()){
-//                   esCorrecto=false;
-//              infoBox(validacionCampoVacio, "info", null);
-//              }
-//             else{
-//                esCorrecto=true;
-//             }
-//                 if(txtInDocumento.getText().trim().isEmpty()){
-//                     esCorrecto=false;
-//              infoBox(validacionCampoVacio, "info", null);
-//              }
-//             else{
-//                 
-//                 esCorrecto=true;
-//             }
 
-//                 
-//                 
-//                 
-//                  LocalDate date = txtInFechaJc.getValue();
-//      if(String.valueOf(date).isEmpty()){
-//          esCorrecto=false;
-//              infoBox(validacionCampoVacio, "info", null);
-//              }
-//             else{
-//               
-//                 esCorrecto=true;
-//             }
-//      
-//              LocalDate date1 = txtInFechRecepJc.getValue();
-//      if(String.valueOf(date1).isEmpty()){
-//          esCorrecto=false;
-//              infoBox(validacionCampoVacio, "info", null);
-//              }
-//             else{
-//               esCorrecto=true;
-//                 
-//             }
-//    if(txtInAreaDerivar.getText().isEmpty()){
-//              infoBox(validacionCampoVacio, "info", null);
-//              esCorrecto=false;
-//              }
-//             else{
-//               esCorrecto=true;
-//             }
-//    
-//    
-//      if( filtro(txtInIdArchJco).isEmpty()){
-//              infoBox(validacionCampoVacio, "info", null);
-//              esCorrecto=false;
-//              }
-//             else{
-//                esCorrecto=true;
-//                 
-//             }
     }
 
     public String ingresaFecha() {
@@ -507,6 +460,59 @@ public class ArchivoController2 implements Initializable {
         }
 
     }
+    String SQLtabla = "SELECT inf.FECHA,inf.DOCUMENTO,inf.ASUNTO,inf.REMITENTE,inf.AREAADERIVAR,inf.FECHADERECEPCCION,inf.N°DEFOLIOS,ar.nombreArchivo FROM `tb_informe` inf JOIN tb_archivo ar on inf.idArchivo=ar.id";
+
+    public void popullateTable() {
+        listInforme = FXCollections.observableArrayList();
+        //listArchivo= FXCollections.observableArrayList();
+        ConnectionUtil connectionUtil = new ConnectionUtil();
+        connection = (Connection) connectionUtil.getConnection();
+        try {
+            resultSet = (java.sql.ResultSet) connection.createStatement().executeQuery(SQLtabla);
+            while (resultSet.next()) {
+                //Archivo archivo = new Archivo();
+                Informe informe = new Informe();
+
+                informe.setFecha(resultSet.getString("FECHA"));
+                informe.setDocumento(resultSet.getString("DOCUMENTO"));
+                informe.setAsunto(resultSet.getString("ASUNTO"));
+                informe.setRemitente(resultSet.getString("REMITENTE"));
+                informe.setAreaaderivar(resultSet.getString("AREAADERIVAR"));
+                informe.setFechaderepccion(resultSet.getString("FECHADERECEPCCION"));
+                informe.setNdeFolios(resultSet.getString("N°DEFOLIOS"));
+                //archivo.setNombre(resultSet.getString("nombreArchivo"));
+
+//                Ranking ranking = new Ranking();
+//                ranking.setEntidades(resultSet.getString("Entidades"));
+//                ranking.setNroMenciones(resultSet.getInt("NMenciones"));
+                //ranking.setId(resultSet.getInt("id"));
+//                listRanking.add(ranking);
+//                cEntidades.setCellValueFactory(new PropertyValueFactory<>("entidades"));
+//                cNMenciones.setCellValueFactory(new PropertyValueFactory<>("nroMenciones"));
+                //  cId.setCellValueFactory(new PropertyValueFactory<>("id"));
+                listInforme.add(informe);
+               // listArchivo.add(archivo.toString());
+
+                cFecha.setCellValueFactory(new PropertyValueFactory<>("FECHA"));
+                cDocumento.setCellValueFactory(new PropertyValueFactory<>("DOCUMENTO / EXPEDIENTE"));
+                cAsunto.setCellValueFactory(new PropertyValueFactory<>("ASUNTO"));
+                cRemitente.setCellValueFactory(new PropertyValueFactory<>("REMITENTE"));
+                cAreaAderivar.setCellValueFactory(new PropertyValueFactory<>("AREA A DERIVAR"));
+                cFechaDrecepcion.setCellValueFactory(new PropertyValueFactory<>("FECHA DE RECEPCION"));
+                cNfolios.setCellValueFactory(new PropertyValueFactory<>("N°DEFOLIOS"));
+                cNarchivador.setCellValueFactory(new PropertyValueFactory<>("N° DE ARCHIVADOR"));
+
+                tableC.setItems(listInforme);
+                //tableC.setItems(listArchivo);
+              
+        
+         
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     private void colocarImagen() {
 
@@ -522,7 +528,7 @@ public class ArchivoController2 implements Initializable {
         //colocarImagenBotones();
         obtenerArchivos();
         colocarImagen();
-
+        popullateTable();
         //idArchivo();
     }
 

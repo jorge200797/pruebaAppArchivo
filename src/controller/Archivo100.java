@@ -33,7 +33,8 @@ public class Archivo100 extends Application {
         //stage.initStyle(StageStyle.UNDECORATED);
            
       
-        
+       
+      
        
         //set mouse pressed
         root.setOnMousePressed(new EventHandler<MouseEvent>() {

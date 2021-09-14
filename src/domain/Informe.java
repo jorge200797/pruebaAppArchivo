@@ -23,7 +23,7 @@ public class Informe {
     private StringProperty remitente = new SimpleStringProperty();
     private StringProperty areaaderivar = new SimpleStringProperty();
     private StringProperty fechaderepccion = new SimpleStringProperty();
-    private StringProperty ndearchivador = new SimpleStringProperty();
+    private StringProperty ndeFolios = new SimpleStringProperty();
      private final IntegerProperty idArchivo = new SimpleIntegerProperty();
 
     public int getId() {
@@ -74,11 +74,11 @@ public class Informe {
         this.fechaderepccion.set(fechaderepccion);
     }
 
-   public String getNdearchivador() {
-        return ndearchivador.get();
+   public String getNdeFolios() {
+        return ndeFolios.get();
     }
-  public void setNdearchivador(String ndearchivador) {
-        this.ndearchivador.set(ndearchivador);
+  public void setNdeFolios(String nDeFolios) {
+        this.ndeFolios.set(nDeFolios);
     }
   
   
