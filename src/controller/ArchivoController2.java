@@ -11,16 +11,17 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import domain.Informe;
 import domain.Archivo;
+import domain.RowData;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,9 +36,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.util.StringConverter;
-import org.controlsfx.control.spreadsheet.StringConverterWithFormat;
+
 import prueba3.MethodConnection.ConnectionUtil;
 
 /**
@@ -141,7 +140,7 @@ public class ArchivoController2 implements Initializable {
     PreparedStatement preparedStatementC = null;
     private String combonombreArchivoSql;
     private ObservableList<Informe> listInforme;
-     private ObservableList<String> listArchivo;
+     private ObservableList<Archivo> listArchivo;
     private int idGenerado;
 
     String validacionCampoVacio = "Campo vacio";
@@ -461,18 +460,18 @@ public class ArchivoController2 implements Initializable {
 
     }
     String SQLtabla = "SELECT inf.FECHA,inf.DOCUMENTO,inf.ASUNTO,inf.REMITENTE,inf.AREAADERIVAR,inf.FECHADERECEPCCION,inf.N°DEFOLIOS,ar.nombreArchivo FROM `tb_informe` inf JOIN tb_archivo ar on inf.idArchivo=ar.id";
-
+ String SQLtabla1 = "SELECT inf.FECHA,inf.DOCUMENTO,inf.ASUNTO,inf.REMITENTE,inf.AREAADERIVAR,inf.FECHADERECEPCCION,inf.N°DEFOLIOS FROM `tb_informe` inf";
     public void popullateTable() {
         listInforme = FXCollections.observableArrayList();
-        //listArchivo= FXCollections.observableArrayList();
+        listArchivo= FXCollections.observableArrayList();
         ConnectionUtil connectionUtil = new ConnectionUtil();
         connection = (Connection) connectionUtil.getConnection();
         try {
             resultSet = (java.sql.ResultSet) connection.createStatement().executeQuery(SQLtabla);
             while (resultSet.next()) {
-                //Archivo archivo = new Archivo();
+                Archivo archivo = new Archivo();
                 Informe informe = new Informe();
-
+                 RowData rowData= new RowData(archivo,informe);
                 informe.setFecha(resultSet.getString("FECHA"));
                 informe.setDocumento(resultSet.getString("DOCUMENTO"));
                 informe.setAsunto(resultSet.getString("ASUNTO"));
@@ -480,8 +479,9 @@ public class ArchivoController2 implements Initializable {
                 informe.setAreaaderivar(resultSet.getString("AREAADERIVAR"));
                 informe.setFechaderepccion(resultSet.getString("FECHADERECEPCCION"));
                 informe.setNdeFolios(resultSet.getString("N°DEFOLIOS"));
-                //archivo.setNombre(resultSet.getString("nombreArchivo"));
-
+                archivo.setNombre(resultSet.getString("nombreArchivo"));
+                  // rowData.setArchivo(archivo);
+                   //rowData.setInforme(informe);
 //                Ranking ranking = new Ranking();
 //                ranking.setEntidades(resultSet.getString("Entidades"));
 //                ranking.setNroMenciones(resultSet.getInt("NMenciones"));
@@ -490,19 +490,30 @@ public class ArchivoController2 implements Initializable {
 //                cEntidades.setCellValueFactory(new PropertyValueFactory<>("entidades"));
 //                cNMenciones.setCellValueFactory(new PropertyValueFactory<>("nroMenciones"));
                 //  cId.setCellValueFactory(new PropertyValueFactory<>("id"));
+             
+                // System.out.println("N°DEFOLIOS:"+resultSet.getString("N°DEFOLIOS"));
+               
                 listInforme.add(informe);
+                listArchivo.add(archivo);
+                
                // listArchivo.add(archivo.toString());
+//
+                 
+                 cFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+                cDocumento.setCellValueFactory(new PropertyValueFactory<Informe, String>("documento"));
+                cAsunto.setCellValueFactory(new PropertyValueFactory<Informe, String>("asunto"));
+                cRemitente.setCellValueFactory(new PropertyValueFactory<Informe, String>("remitente"));
+                cAreaAderivar.setCellValueFactory(new PropertyValueFactory<Informe, String>("areaaderivar"));
+                cFechaDrecepcion.setCellValueFactory(new PropertyValueFactory<Informe, String>("fechaderepccion"));
+                cNfolios.setCellValueFactory(new PropertyValueFactory<Informe, String>("ndeFolios"));
+                cNarchivador.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 
-                cFecha.setCellValueFactory(new PropertyValueFactory<>("FECHA"));
-                cDocumento.setCellValueFactory(new PropertyValueFactory<>("DOCUMENTO / EXPEDIENTE"));
-                cAsunto.setCellValueFactory(new PropertyValueFactory<>("ASUNTO"));
-                cRemitente.setCellValueFactory(new PropertyValueFactory<>("REMITENTE"));
-                cAreaAderivar.setCellValueFactory(new PropertyValueFactory<>("AREA A DERIVAR"));
-                cFechaDrecepcion.setCellValueFactory(new PropertyValueFactory<>("FECHA DE RECEPCION"));
-                cNfolios.setCellValueFactory(new PropertyValueFactory<>("N°DEFOLIOS"));
-                cNarchivador.setCellValueFactory(new PropertyValueFactory<>("N° DE ARCHIVADOR"));
-
+                //tableC.setItems(null);
+               
+              //  System.out.println("columnas:"+tableC.getColumns());
                 tableC.setItems(listInforme);
+                //tableC.setItems(listArchivo);
+                   tableC.setVisible(true);
                 //tableC.setItems(listArchivo);
               
         
@@ -511,6 +522,7 @@ public class ArchivoController2 implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
     }
 

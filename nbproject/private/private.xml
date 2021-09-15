@@ -5,12 +5,18 @@
             <url>src/controller/Archivo100.java</url>
             <bookmark id="1">
                 <name/>
-                <line>65</line>
+                <line>68</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/pruebaAppArchivo/src/controller/ArchivoController2.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/pruebaAppArchivo/src/domain/Informe.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/pruebaAppArchivo/src/controller/Archivo100.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/pruebaAppArchivo/src/controller/stylesheet.css</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/pruebaAppArchivo/src/domain/Archivo.java</file>
+        </group>
     </open-files>
 </project-private>

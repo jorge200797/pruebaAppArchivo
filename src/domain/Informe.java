@@ -5,6 +5,7 @@
  */
 package domain;
 
+import impl.org.controlsfx.i18n.SimpleLocalizedStringProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,6 +17,8 @@ import javafx.beans.property.StringProperty;
  */
 public class Informe {
 
+   
+
     private final IntegerProperty id = new SimpleIntegerProperty();
     private StringProperty fecha = new SimpleStringProperty();
     private StringProperty documento = new SimpleStringProperty();
@@ -25,7 +28,14 @@ public class Informe {
     private StringProperty fechaderepccion = new SimpleStringProperty();
     private StringProperty ndeFolios = new SimpleStringProperty();
      private final IntegerProperty idArchivo = new SimpleIntegerProperty();
-
+ public Informe(String fecha) {
+     this.fecha=new SimpleLocalizedStringProperty(fecha); 
+     
+    }
+ public Informe() {
+     
+     
+    }
     public int getId() {
         return id.get();
     }
