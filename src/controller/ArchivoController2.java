@@ -20,6 +20,7 @@ import java.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -140,7 +141,8 @@ public class ArchivoController2 implements Initializable {
     PreparedStatement preparedStatementC = null;
     private String combonombreArchivoSql;
     private ObservableList<Informe> listInforme;
-     private ObservableList<Archivo> listArchivo;
+    private ObservableList<Archivo> listArchivo;
+    private ObservableList<RowData> listRowData;
     private int idGenerado;
 
     String validacionCampoVacio = "Campo vacio";
@@ -157,9 +159,6 @@ public class ArchivoController2 implements Initializable {
 
     }
     Connection connection;
-    
-    
- 
 
     //
     @FXML
@@ -460,10 +459,12 @@ public class ArchivoController2 implements Initializable {
 
     }
     String SQLtabla = "SELECT inf.FECHA,inf.DOCUMENTO,inf.ASUNTO,inf.REMITENTE,inf.AREAADERIVAR,inf.FECHADERECEPCCION,inf.N°DEFOLIOS,ar.nombreArchivo FROM `tb_informe` inf JOIN tb_archivo ar on inf.idArchivo=ar.id";
- String SQLtabla1 = "SELECT inf.FECHA,inf.DOCUMENTO,inf.ASUNTO,inf.REMITENTE,inf.AREAADERIVAR,inf.FECHADERECEPCCION,inf.N°DEFOLIOS FROM `tb_informe` inf";
+    String SQLtabla1 = "SELECT inf.FECHA,inf.DOCUMENTO,inf.ASUNTO,inf.REMITENTE,inf.AREAADERIVAR,inf.FECHADERECEPCCION,inf.N°DEFOLIOS FROM `tb_informe` inf";
+
     public void popullateTable() {
         listInforme = FXCollections.observableArrayList();
-        listArchivo= FXCollections.observableArrayList();
+        //listArchivo = FXCollections.observableArrayList();
+        //listRowData= FXCollections.observableArrayList();
         ConnectionUtil connectionUtil = new ConnectionUtil();
         connection = (Connection) connectionUtil.getConnection();
         try {
@@ -471,17 +472,18 @@ public class ArchivoController2 implements Initializable {
             while (resultSet.next()) {
                 Archivo archivo = new Archivo();
                 Informe informe = new Informe();
-                 RowData rowData= new RowData(archivo,informe);
+                //RowData rowData = new RowData(archivo, informe);
                 informe.setFecha(resultSet.getString("FECHA"));
+                //informe.setFecha1();
                 informe.setDocumento(resultSet.getString("DOCUMENTO"));
                 informe.setAsunto(resultSet.getString("ASUNTO"));
                 informe.setRemitente(resultSet.getString("REMITENTE"));
                 informe.setAreaaderivar(resultSet.getString("AREAADERIVAR"));
                 informe.setFechaderepccion(resultSet.getString("FECHADERECEPCCION"));
                 informe.setNdeFolios(resultSet.getString("N°DEFOLIOS"));
-                archivo.setNombre(resultSet.getString("nombreArchivo"));
-                  // rowData.setArchivo(archivo);
-                   //rowData.setInforme(informe);
+                informe.setNombre(resultSet.getString("nombreArchivo"));
+                // rowData.setArchivo(archivo);
+                //rowData.setInforme(informe);
 //                Ranking ranking = new Ranking();
 //                ranking.setEntidades(resultSet.getString("Entidades"));
 //                ranking.setNroMenciones(resultSet.getInt("NMenciones"));
@@ -490,39 +492,37 @@ public class ArchivoController2 implements Initializable {
 //                cEntidades.setCellValueFactory(new PropertyValueFactory<>("entidades"));
 //                cNMenciones.setCellValueFactory(new PropertyValueFactory<>("nroMenciones"));
                 //  cId.setCellValueFactory(new PropertyValueFactory<>("id"));
-             
+
                 // System.out.println("N°DEFOLIOS:"+resultSet.getString("N°DEFOLIOS"));
-               
                 listInforme.add(informe);
-                listArchivo.add(archivo);
-                
-               // listArchivo.add(archivo.toString());
-//
+                //listArchivo.add(archivo);
+                  //listRowData.add(new RowData(rowData.getArchivo(),rowData.getInforme()));
+                  
                  
-                 cFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+                  
+                // listArchivo.add(archivo.toString());
+              // cFecha.setCellValueFactory(f ->f.getValue().getFecha1());
+                cFecha.setCellValueFactory(new PropertyValueFactory<Informe, String>("fecha"));
                 cDocumento.setCellValueFactory(new PropertyValueFactory<Informe, String>("documento"));
                 cAsunto.setCellValueFactory(new PropertyValueFactory<Informe, String>("asunto"));
                 cRemitente.setCellValueFactory(new PropertyValueFactory<Informe, String>("remitente"));
                 cAreaAderivar.setCellValueFactory(new PropertyValueFactory<Informe, String>("areaaderivar"));
                 cFechaDrecepcion.setCellValueFactory(new PropertyValueFactory<Informe, String>("fechaderepccion"));
                 cNfolios.setCellValueFactory(new PropertyValueFactory<Informe, String>("ndeFolios"));
-                cNarchivador.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+                cNarchivador.setCellValueFactory(new PropertyValueFactory<Archivo,String>("nombre"));
+                 //cNarchivador.setCellValueFactory(f ->f.getValue().getNombre1());
 
                 //tableC.setItems(null);
-               
-              //  System.out.println("columnas:"+tableC.getColumns());
+                //  System.out.println("columnas:"+tableC.getColumns());
                 tableC.setItems(listInforme);
-                //tableC.setItems(listArchivo);
-                   tableC.setVisible(true);
-                //tableC.setItems(listArchivo);
               
-        
-         
+                tableC.setVisible(true);
+          
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
     }
 

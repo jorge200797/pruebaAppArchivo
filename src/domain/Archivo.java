@@ -17,7 +17,8 @@ import javafx.beans.property.StringProperty;
 public class Archivo {
      private final IntegerProperty id= new SimpleIntegerProperty();
      private StringProperty nombre=  new SimpleStringProperty();
-  public int getId() {
+
+       public int getId() {
         return id.get();
     }
 
@@ -33,5 +34,15 @@ public class Archivo {
         this.nombre.set(nombre);
     }
     
+     
+     
+    public StringProperty getNombre1() {
+        return nombre;
+    }
+
+    public void setNombre1(StringProperty nombre) {
+        this.nombre = nombre;
+    }
+
     
 }
