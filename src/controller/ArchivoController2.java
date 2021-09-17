@@ -262,7 +262,7 @@ public class ArchivoController2 implements Initializable {
                 ConnectionUtil connectionUtil = new ConnectionUtil();
                 connection = (Connection) connectionUtil.getConnection();
 
-                String sql = "INSERT INTO `tb_informe` (      `FECHA`, `DOCUMENTO`, `ASUNTO`, `REMITENTE`, `AREAADERIVAR`, `FECHADERECEPCCION`, `N°DEFOLIOS`,) VALUES ("
+                String sql = "INSERT INTO `tb_informe` (`FECHA`, `DOCUMENTO`, `ASUNTO`, `REMITENTE`, `AREAADERIVAR`, `FECHADERECEPCCION`, `N°DEFOLIOS`,`idArchivo`) VALUES ("
                         + "'" + ingresaFecha() + "' "
                         + ",'" + ingresaDocumento() + "'"
                         + ",'" + ingresaAsunto() + "'"
