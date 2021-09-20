@@ -38,7 +38,7 @@ public class ConnectionUtil {
             return con;
         } catch (ClassNotFoundException | SQLException ex) {
             System.err.println("ConnectionUtil : "+ex.getMessage());
-            infoBox("conecte la base datos o prenda el xampp, Apache y Mysql","error" , null);
+            infoBox("conecte la base datos o abra el xampp,  start Apache y Mysql","error" , null);
          
         }
 
