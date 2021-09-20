@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -37,12 +38,19 @@ public class ConnectionUtil {
             return con;
         } catch (ClassNotFoundException | SQLException ex) {
             System.err.println("ConnectionUtil : "+ex.getMessage());
+            infoBox("conecte la base datos o prenda el xampp, Apache y Mysql","error" , null);
          
         }
 
         return conn;
     }
-
+    public static void infoBox(String infoMessage, String titleBar, String headerMessage) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titleBar);
+        alert.setHeaderText(headerMessage);
+        alert.setContentText(infoMessage);
+        alert.showAndWait();
+    }
     public static void main(String[] args) {
         ConnectionUtil a = new ConnectionUtil();
         a.getConnection();
